@@ -4,6 +4,12 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Copy from tomcat
+ *
+ * @param <K>
+ * @param <V>
+ */
 public final class ConcurrentCache<K, V> {
 
     private final int size;

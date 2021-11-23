@@ -2,6 +2,9 @@ package com.young.commons.retelimit;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 漏桶算法的实现
+ */
 public class LeakyBucketLimiter extends RateLimiter {
     private final long capacity;                                            // 水桶容量, 一秒流光
     private double remainWater;                                             // 目前水桶剩下的水量
@@ -39,6 +42,5 @@ public class LeakyBucketLimiter extends RateLimiter {
         } finally {
             if (lock.isLocked()) lock.unlock();
         }
-
     }
 }
