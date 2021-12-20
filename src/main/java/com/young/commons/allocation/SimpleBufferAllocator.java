@@ -6,10 +6,9 @@ public class SimpleBufferAllocator extends AbstractBufferAllocator {
 
     @Override
     public AllocatedBuffer allocate(int capacity) {
-        final AllocatedDirectBuffer buffer =
-            new AllocatedDirectBuffer(ByteBuffer.allocate(capacity), SimpleBufferAllocator::onFree);
+        final AllocatedSimpleBuffer buffer =
+            new AllocatedSimpleBuffer(ByteBuffer.allocate(capacity));
         ALLOCATED_MEMORY.addAndGet(capacity);
-
         return buffer;
     }
 }
