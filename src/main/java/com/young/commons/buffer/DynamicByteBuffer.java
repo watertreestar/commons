@@ -281,16 +281,16 @@ public class DynamicByteBuffer implements Comparable<ByteBuffer>, Serializable {
         return byteBuffer;
     }
 
+    public float getExpandFactor() {
+        return expandFactor;
+    }
+
     public void setExpandFactor(float expandFactor) {
         if (expandFactor < 1) {
             throw new IllegalArgumentException(
                 "The expand factor must be greater or equal to 1!");
         }
         this.expandFactor = expandFactor;
-    }
-
-    public float getExpandFactor() {
-        return expandFactor;
     }
 
     private void ensureSpace(int needed) {
