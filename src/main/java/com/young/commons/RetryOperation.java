@@ -14,10 +14,6 @@ public class RetryOperation<T> {
     private final RetryOperation.RetryPredicate<T> retryPredicate;
     private final List<Class<? extends Throwable>> exceptionList;
 
-    public static <T> OperationBuilder<T> newBuilder() {
-        return new RetryOperation.OperationBuilder<>();
-    }
-
     private RetryOperation(RetryOperation.RetryConsumer<T> retryConsumer, int noOfRetry, int delayInterval, TimeUnit timeUnit,
                            RetryOperation.RetryPredicate<T> retryPredicate, List<Class<? extends Throwable>> exceptionList) {
         this.retryConsumer = retryConsumer;
@@ -28,6 +24,9 @@ public class RetryOperation<T> {
         this.exceptionList = exceptionList;
     }
 
+    public static <T> OperationBuilder<T> newBuilder() {
+        return new RetryOperation.OperationBuilder<>();
+    }
 
     public T retry() throws Exception {
         T result = null;
@@ -79,6 +78,15 @@ public class RetryOperation<T> {
         return retries;
     }
 
+
+    public interface RetryPredicate<T> {
+        boolean shouldRetry(T obj);
+    }
+
+
+    public interface RetryConsumer<T> {
+        T evaluate() throws Exception;
+    }
 
     public static class OperationBuilder<T> {
         private RetryOperation.RetryConsumer<T> iRetryConsumer;
@@ -138,14 +146,5 @@ public class RetryOperation<T> {
                 return new RetryOperation<>(this.iRetryConsumer, this.iNoOfRetry, this.iDelayInterval, this.iTimeUnit, this.iRetryPredicate, (List) exceptionList);
             }
         }
-    }
-
-
-    public interface RetryPredicate<T> {
-        boolean shouldRetry(T obj);
-    }
-
-    public interface RetryConsumer<T> {
-        T evaluate() throws Exception;
     }
 }

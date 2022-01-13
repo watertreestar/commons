@@ -1,5 +1,7 @@
 package com.young.commons;
 
+import java.util.Collection;
+
 public class Assert {
     /**
      * Assert a boolean expression, throwing
@@ -281,5 +283,44 @@ public class Assert {
     public static void noNullElements(Object[] array) {
         noNullElements(array,
             "[Assertion failed] - this array must not contain any null elements");
+    }
+
+    /**
+     * Assert that a collection has no null element
+     *
+     * @param collection
+     * @param message
+     * @throws IllegalArgumentException if the collection contains a <code>null</code> element
+     */
+    public static void noNullElements(Collection<?> collection, String message) {
+        if (collection != null) {
+            for (Object o : collection) {
+                if (o == null) {
+                    throw new IllegalArgumentException(message);
+                }
+            }
+        }
+    }
+
+    /**
+     * Assert the specific collection is null, or it's size is zero
+     *
+     * @param collection
+     * @return true is the collection is null or no element, otherwise false
+     */
+    public static boolean isEmpty(Collection<?> collection) {
+        return collection != null && collection.size() > 0;
+    }
+
+    /**
+     * Assert the specific collection is not null, and element size greater than 0
+     *
+     * @param collection the collection to assert
+     * @param message    the exception message to use if the assertion fails
+     */
+    public static void notEmpty(Collection<?> collection, String message) {
+        if (isEmpty(collection)) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }

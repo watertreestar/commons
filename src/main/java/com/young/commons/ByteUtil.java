@@ -1,6 +1,10 @@
 package com.young.commons;
 
 public class ByteUtil {
+    private ByteUtil() {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * Returns the first target occurrence position in the source byte array.
      *
@@ -574,6 +578,9 @@ public class ByteUtil {
         return b;
     }
 
+
+    // ~ -------------------------------------------------------------------------------------------------------------
+
     /**
      * Set a byte array at specific offset from a double.
      *
@@ -592,10 +599,6 @@ public class ByteUtil {
         b[off + 1] = (byte) (l >>> 48);
         b[off + 0] = (byte) (l >>> 56);
     }
-
-
-    // ~ -------------------------------------------------------------------------------------------------------------
-
 
     /**
      * @deprecated replace by {@link #bytes2short(byte[])}
@@ -623,9 +626,5 @@ public class ByteUtil {
      */
     public static final int makeIntFromByte4(byte[] b, int off) {
         return b[off] << 24 | (b[off + 1] & 0xff) << 16 | (b[off + 2] & 0xff) << 8 | (b[off + 3] & 0xff);
-    }
-
-    private ByteUtil() {
-        throw new UnsupportedOperationException();
     }
 }
