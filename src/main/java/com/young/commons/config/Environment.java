@@ -1,4 +1,4 @@
-package com.young.commons;
+package com.young.commons.config;
 
 import java.util.*;
 import java.util.function.UnaryOperator;

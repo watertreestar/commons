@@ -1,4 +1,4 @@
-package com.young.commons;
+package com.young.commons.collection;
 
 import java.util.Collection;
 import java.util.Map;
