@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class GzipUtils {
+public class GzipUtil {
     /**
      * Compress data bytes by gzip algorithm
      *
