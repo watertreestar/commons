@@ -1,4 +1,4 @@
-package com.young.commons;
+package com.young.commons.lifecycle;
 
 public interface LifeCycle {
     void start() throws Throwable;
